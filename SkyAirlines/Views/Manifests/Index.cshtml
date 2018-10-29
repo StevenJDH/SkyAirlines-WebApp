@@ -1,0 +1,73 @@
+﻿@model IEnumerable<SkyAirlines.Models.Manifest>
+
+@{
+    ViewData["Title"] = "Passenger Manifests";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<p>Type something in the input field to search the table by first names, last names or seat:</p>
+<input class="form-control" id="myInput" type="text" placeholder="Search..">
+<br>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Flight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Passenger)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Seat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Flight.Airport)
+            </th>
+            <th>Tasks</th>
+        </tr>
+    </thead>
+    <tbody id="myTable">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Flight.FlightPrefix)-@Html.DisplayFor(modelItem => item.Flight.FlightId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Passenger.LastName),
+                    @Html.DisplayFor(modelItem => item.Passenger.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Seat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Flight.Airport.AirportName)
+                    (@Html.DisplayFor(modelItem => item.Flight.Airport.AirportCode))
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<p>For now, each passenger is on a different manifest.</p>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+}
