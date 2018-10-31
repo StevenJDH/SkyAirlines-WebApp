@@ -1,0 +1,82 @@
+﻿@model SkyAirlines.Models.Manifest
+
+@{
+    ViewData["Title"] = "Manifest Details of Passenger";
+}
+
+<div>
+    <h2>@ViewData["Title"]</h2>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Passenger)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Passenger.LastName), @Html.DisplayFor(model => model.Passenger.FirstName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Passenger.Passport)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Passenger.Passport)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Passenger.DOB)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Passenger.DOB)
+        </dd>
+        <dt>
+            Checked Baggage
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Passenger.CheckedBaggage)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Flight)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Flight.FlightPrefix)-@Html.DisplayFor(model => model.Flight.FlightId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Seat)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Seat)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Flight.Aircraft)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Flight.Aircraft.AircraftModel)
+        </dd>
+        <dt>
+            Aircraft Capacity
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Flight.Aircraft.AircraftCapacity)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Flight.Airport)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Flight.Airport.AirportName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Flight.Departure)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Flight.Departure)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Flight.Arrival)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Flight.Arrival)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>

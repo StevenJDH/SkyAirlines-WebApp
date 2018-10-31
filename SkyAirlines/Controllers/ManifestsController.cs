@@ -30,5 +30,25 @@ namespace SkyAirlines.Controllers
 
             return View(model);
         }
+
+        public IActionResult Details(string fltPrefix, int fltID, int paxID)
+        {
+            Manifest manifest = _context.Manifests.Include(m => m.Flight)
+                .Include(m => m.Flight.Aircraft)
+                .Include(m => m.Flight.Airport)
+                .Include(m => m.Passenger)
+                .FirstOrDefault(m => 
+                    m.FlightPrefix == fltPrefix &&
+                    m.FlightId == fltID && 
+                    m.PassengerId == paxID
+                );
+
+            if (manifest == null)
+            {
+                return NotFound();
+            }
+
+            return View(manifest);
+        }
     }
 }

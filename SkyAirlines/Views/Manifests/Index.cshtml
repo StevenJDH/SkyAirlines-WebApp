@@ -7,7 +7,7 @@
 <h2>@ViewData["Title"]</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="btn btn-primary" asp-action="Create"><i class="glyphicon glyphicon-plus"></i> Create New</a>
 </p>
 <p>Type something in the input field to search the table by first names, last names or seat:</p>
 <input class="form-control" id="myInput" type="text" placeholder="Search..">
@@ -31,27 +31,31 @@
         </tr>
     </thead>
     <tbody id="myTable">
-        @foreach (var item in Model)
+        @foreach (var manifest in Model)
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Flight.FlightPrefix)-@Html.DisplayFor(modelItem => item.Flight.FlightId)
+                    @Html.DisplayFor(modelItem => manifest.Flight.FlightPrefix)-@Html.DisplayFor(modelItem => manifest.Flight.FlightId)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Passenger.LastName),
-                    @Html.DisplayFor(modelItem => item.Passenger.FirstName)
+                    @Html.DisplayFor(modelItem => manifest.Passenger.LastName),
+                    @Html.DisplayFor(modelItem => manifest.Passenger.FirstName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Seat)
+                    @Html.DisplayFor(modelItem => manifest.Seat)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Flight.Airport.AirportName)
-                    (@Html.DisplayFor(modelItem => item.Flight.Airport.AirportCode))
+                    @Html.DisplayFor(modelItem => manifest.Flight.Airport.AirportName)
+                    (@Html.DisplayFor(modelItem => manifest.Flight.Airport.AirportCode))
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    @Html.ActionLink("Edit", "Edit", new { /* id=manifest.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new {
+                        fltPrefix = manifest.FlightPrefix,
+                        fltID = manifest.FlightId,
+                        paxID = manifest.PassengerId
+                    }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=manifest.PrimaryKey */ })
                 </td>
             </tr>
         }
