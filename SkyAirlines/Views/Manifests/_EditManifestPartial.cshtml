@@ -1,0 +1,43 @@
+﻿@model SkyAirlines.Models.Manifest
+
+@{
+    ViewData["Title"] = "Change Flight Details";
+}
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-sm modal-dialog-centered">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">@ViewData["Title"]</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <form asp-controller="Manifests" asp-action="ChangeSeat" method="post" role="form" id="seatForm">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="FlightPrefix" />
+                            <input type="hidden" asp-for="FlightId" />
+                            <input type="hidden" asp-for="PassengerId" />
+                            <div class="form-group">
+                                <label asp-for="Seat" class="control-label"></label>
+                                <input asp-for="Seat" class="form-control" />
+                                <span asp-validation-for="Seat" class="text-danger"></span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="submit" form="seatForm" class="btn btn-danger">Change</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+
+    </div>
+</div>
