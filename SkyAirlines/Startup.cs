@@ -33,12 +33,15 @@ namespace SkyAirlines
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddDbContext<AppDbContext>(options => 
+            // Used for testing. Run _context.Database.EnsureCreated(); to seed it.
+            //services.AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase("SkyAirlinesDB"));
+            services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddTransient<IUnitOfWork, UnitOfWork>();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+                .AddMvcOptions(o => o.Filters.Add(new AutoValidateAntiforgeryTokenAttribute()));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
