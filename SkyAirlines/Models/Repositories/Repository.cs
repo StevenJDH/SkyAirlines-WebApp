@@ -9,15 +9,12 @@ namespace SkyAirlines.Models.Repositories
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
-        // Generic DbContext base class, not our AppDbContext.
-        private readonly DbContext _context; 
         private readonly DbSet<TEntity> _entity;
 
-        public Repository(DbContext context)
+        public Repository(DbContext context) // Generic DbContext base class, not our AppDbContext.
         {
-            _context = context;
             // Gets a reference to the DbSet without our AppDbContext.
-            _entity = _context.Set<TEntity>(); 
+            _entity = context.Set<TEntity>(); 
         }
 
         public TEntity GetRecord(int id) => _entity.Find(id);
@@ -25,7 +22,7 @@ namespace SkyAirlines.Models.Repositories
         public IEnumerable<TEntity> GetAll() => _entity.ToList();
 
         public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate) => 
-            _entity.Where(predicate);
+            _entity.Where(predicate).ToList();
 
         // Will return just the first result if more than one result is returned.
         public TEntity FirstOrDefault(Expression<Func<TEntity, bool>> predicate) => 

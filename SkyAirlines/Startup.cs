@@ -33,7 +33,7 @@ namespace SkyAirlines
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            // Used for testing. Run _context.Database.EnsureCreated(); to seed it.
+            // Used for testing. Run context.Database.EnsureCreated(); to seed it.
             //services.AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase("SkyAirlinesDB"));
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
@@ -45,11 +45,13 @@ namespace SkyAirlines
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env/*, AddDbContext context*/)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                
+                //context.Database.EnsureCreated();
             }
             else
             {

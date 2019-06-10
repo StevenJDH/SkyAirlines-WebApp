@@ -21,7 +21,7 @@ namespace SkyAirlines.Models.Repositories
         /// Gets a flat collection of manifests with eager-loaded navigation properties 
         /// for Flight, Airport, and Passenger except for Aircraft.
         /// </summary>
-        /// <returns>All manifests and navigation properites except Aircraft.</returns>
+        /// <returns>All manifests and navigation properties except Aircraft.</returns>
         IEnumerable<Manifest> GetManifestsWithAllExceptAircraft();
     }
 }
