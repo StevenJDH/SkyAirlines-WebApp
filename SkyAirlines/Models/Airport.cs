@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -18,10 +19,12 @@ namespace SkyAirlines.Models
 
         [Required]
         [StringLength(5)]
+        [DisplayName("Airport Code")]
         public string AirportCode { get; set; }
 
         [Required]
         [StringLength(45)]
+        [DisplayName("Airport Name")]
         public string AirportName { get; set; }
 
 

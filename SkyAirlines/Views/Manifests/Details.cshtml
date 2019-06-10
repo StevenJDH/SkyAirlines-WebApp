@@ -27,7 +27,7 @@
             @Html.DisplayFor(model => model.Passenger.DOB)
         </dd>
         <dt>
-            Checked Baggage
+            @Html.DisplayNameFor(model => model.Passenger.CheckedBaggage)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Passenger.CheckedBaggage)
@@ -51,7 +51,7 @@
             @Html.DisplayFor(model => model.Flight.Aircraft.AircraftModel)
         </dd>
         <dt>
-            Aircraft Capacity
+            @Html.DisplayNameFor(model => model.Flight.Aircraft.AircraftCapacity)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Flight.Aircraft.AircraftCapacity)
@@ -94,6 +94,6 @@
             });
         });
     </script>
-    <script src="/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
 }

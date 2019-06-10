@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -18,8 +19,10 @@ namespace SkyAirlines.Models
 
         [Required]
         [StringLength(10)]
+        [DisplayName("Aircraft Model")]
         public string AircraftModel { get; set; }
 
+        [DisplayName("Aircraft Capacity")]
         public int AircraftCapacity { get; set; }
 
 
